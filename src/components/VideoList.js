@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { movieList } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_VIDEO_API } from "../utils/constant";
@@ -13,16 +13,16 @@ const VideoList = () => {
   const [searchParams] = useSearchParams();
   const searchName = searchParams.get("search_query");
 
-  const handleSearchClick = async () => {
+  const handleSearchClick = useCallback(async () => {
     console.log("one");
     const response = await fetch(YOUTUBE_SEARCH_VIDEO_API + searchName);
     const json = await response.json();
     dispatch(movieList(json.items));
-  };
+  }, [searchName, dispatch]);
 
   useEffect(() => {
     handleSearchClick();
-  }, [searchName]);
+  }, [handleSearchClick]);
 
   return (
     <div className="p-5">

@@ -20,7 +20,7 @@ const LiveChat = () => {
       );
     }, 2000);
     return () => clearInterval(i);
-  }, []);
+  }, [dispatch]);
   return (
     <div className="relative">
       <h2 className="absolute top-0 left-0 text-2xl font-bold p-4 z-10 bg-slate-100 w-full border-x border-t border-gray-400 rounded-t-lg">

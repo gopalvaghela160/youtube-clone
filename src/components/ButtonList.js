@@ -2,35 +2,6 @@ import React, { useEffect, useState } from "react";
 import Buttons from "./Buttons";
 import { YOUTUBE_CATEGORY_API } from "../utils/constant";
 
-const list = [
-  "All",
-  "Gaming",
-  "Songs",
-  "Live",
-  "Cricket",
-  "Cooking",
-  "Sports",
-  "News",
-  "Comedy",
-  "Movies",
-  "Technology",
-  "Education",
-  "Travel",
-  "Fashion",
-  "Beauty",
-  "Health",
-  "Fitness",
-  "Food",
-  "DIY",
-  "Art",
-  "Photography",
-  "Science",
-  "History",
-  "Business",
-  "Finance",
-  "Motivation",
-  "Inspiration",
-];
 
 const ButtonList = () => {
   const [categoryList, setCategoryList] = useState([]);

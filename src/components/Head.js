@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constant";
@@ -15,6 +15,13 @@ const Head = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
 
+  const getListOfSearchResults = useCallback(async () => {
+    const response = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await response.json();
+    setSearchResults(json[1]);
+    dispatch(cacheSearch({ [searchQuery]: json[1] }));
+  }, [searchQuery, dispatch]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchCache[searchQuery]) {
@@ -24,14 +31,7 @@ const Head = () => {
       }
     }, 200);
     return () => clearTimeout(timer);
-  }, [searchQuery]);
-
-  const getListOfSearchResults = async () => {
-    const response = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const json = await response.json();
-    setSearchResults(json[1]);
-    dispatch(cacheSearch({ [searchQuery]: json[1] }));
-  };
+  }, [searchQuery, searchCache, getListOfSearchResults]);
   const handleSuggestionClick = (value) => {
     setSearchQuery(value); // set input value
     setShowSearchResults(false); // close dropdown

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { YOUTUBE_VIDEO_API } from "../utils/constant";
 import VideoCard, { AdsVideoCard } from "./VideoCard";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ const VideoContainer = () => {
   const [NextPageToken, setNextPageToken] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const videoList = async () => {
+  const videoList = useCallback(async () => {
     if (loading) return;
     setLoading(true);
     const response = await fetch(YOUTUBE_VIDEO_API);
@@ -17,10 +17,11 @@ const VideoContainer = () => {
     setVideos((prev) => [...prev, ...json.items]);
     setNextPageToken(json.nextPageToken || "");
     setLoading(false);
-  };
+  }, [loading]);
+
   useEffect(() => {
     videoList();
-  }, []);
+  }, [videoList]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +37,7 @@ const VideoContainer = () => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [NextPageToken, loading]);
+  }, [NextPageToken, loading, videoList]);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-4">

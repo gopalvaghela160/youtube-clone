@@ -12,14 +12,13 @@ export const WatchPage = () => {
   const videoId = searchParams.get("v");
 
   const videoCategories = async () => {
-    const response = await fetch(YOUTUBE_VIDEO_CATEGORY_API);
-    const data = await response.json();
+    await fetch(YOUTUBE_VIDEO_CATEGORY_API);
   };
 
   useEffect(() => {
     dispatch(closeMenu());
     videoCategories();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="w-full bg-gray-50 min-h-screen">
