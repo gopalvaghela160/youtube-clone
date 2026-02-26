@@ -28,7 +28,7 @@ const VideoContainer = () => {
 
   useEffect(() => {
     videoList();
-  }, []);
+  }, [videoList]);
 
   useEffect(() => {
     const handleScroll = () => {
