@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
   const [NextPageToken, setNextPageToken] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false); 
 
   const videoList = useCallback(async () => {
     if (loading) return;
