@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
   const [NextPageToken, setNextPageToken] = useState(null);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const videoList = useCallback(async () => {
     if (loading) return;
@@ -26,10 +26,12 @@ const VideoContainer = () => {
     setLoading(false);
   }, [loading, NextPageToken]);
 
+  // ✅ Initial Load
   useEffect(() => {
     videoList();
-  }, [videoList]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // ✅ Infinite Scroll
   useEffect(() => {
     const handleScroll = () => {
       if (loading || !NextPageToken) return;
@@ -44,15 +46,13 @@ const VideoContainer = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [NextPageToken, loading, videoList]);
+  }, [loading, NextPageToken, videoList]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-6">
-      {/* Sponsored Video (Only First One) */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 pt-4 w-full">
       {videos.length > 0 && <AdsVideoCard info={videos[0]} />}
-      {/* Rest Videos (Skip First) */}
+
       {videos.slice(1).map((video, index) => (
         <Link to={`/watch?v=${video.id}`} key={`${video.id}-${index}`}>
           <VideoCard info={video} />

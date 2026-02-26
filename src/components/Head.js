@@ -43,9 +43,9 @@ const Head = () => {
 
   return (
     <div className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="flex items-center justify-between px-6 py-3">
+      <div className="flex items-center justify-between px-2 sm:px-6 py-3">
         {/* Left Section */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <img
             onClick={() => handleToggleMenu()}
             className="h-7 cursor-pointer hover:opacity-70 transition"
@@ -62,17 +62,17 @@ const Head = () => {
         </div>
 
         {/* Center Search Section */}
-        <div className="relative flex-1 flex justify-center px-10">
+        <div className="relative flex-1 flex justify-center px-2 sm:px-10">
           <div className="flex w-full max-w-2xl">
             <input
-              className="flex-1 border border-gray-300 px-5 py-2 rounded-l-full focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              className="flex-1 border border-gray-300 px-3 sm:px-5 py-1 sm:py-2 rounded-l-full focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-full"
               type="text"
               placeholder="Search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setShowSearchResults(true)}
             />
-            <button className="border border-l-0 border-gray-300 px-6 bg-gray-100 hover:bg-gray-200 rounded-r-full transition">
+            <button className="border border-l-0 border-gray-300 px-3 sm:px-6 bg-gray-100 hover:bg-gray-200 rounded-r-full transition">
               🔍
             </button>
           </div>
@@ -96,9 +96,9 @@ const Head = () => {
         </div>
 
         {/* Right Section */}
-        <div className="flex items-center">
+        <div className="flex items-center shrink-0">
           <img
-            className="h-9 w-9 rounded-full cursor-pointer hover:opacity-80 transition"
+            className="h-8 w-8 sm:h-9 sm:w-9 rounded-full cursor-pointer hover:opacity-80 transition"
             src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
             alt="user"
           />

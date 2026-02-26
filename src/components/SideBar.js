@@ -29,7 +29,7 @@ const SideBar = () => {
     }`;
 
   return (
-    <aside className="w-64 h-screen bg-white border-r border-gray-200 shadow-sm p-4 overflow-y-auto ">
+    <aside className="fixed md:sticky top-16 md:top-0 left-0 z-40 w-64 h-[calc(100vh-4rem)] md:h-screen bg-white border-r border-gray-200 shadow-lg md:shadow-sm p-4 overflow-y-auto transition-transform">
       {/* Main Menu */}
       <nav className="space-y-1">
         <Link to="/" className={menuClass("/")}>

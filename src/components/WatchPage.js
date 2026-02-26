@@ -22,13 +22,13 @@ export const WatchPage = () => {
 
   return (
     <div className="w-full bg-gray-50 min-h-screen">
-      <div className="max-w-[1800px] mx-auto px-6 py-6">
+      <div className="max-w-[1800px] mx-auto px-0 sm:px-6 py-2 sm:py-6 w-full">
         {/* Video + Chat Row */}
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 w-full">
           {/* Video Section */}
-          <div className="flex-1">
-            <div className="bg-black rounded-xl overflow-hidden shadow-md">
-              <div className="relative pb-[56.25%]">
+          <div className="flex-1 w-full">
+            <div className="bg-black rounded-none sm:rounded-xl overflow-hidden shadow-md w-full">
+              <div className="relative pb-[56.25%] w-full">
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
                   src={`https://www.youtube.com/embed/${videoId}`}
@@ -43,16 +43,16 @@ export const WatchPage = () => {
           </div>
 
           {/* Live Chat Section */}
-          <div className="w-full lg:w-[380px]">
-            <div className="bg-white rounded-xl shadow-md border border-gray-200 h-full">
+          <div className="w-full lg:w-[380px] px-2 sm:px-0">
+            <div className="bg-white rounded-xl shadow-md border border-gray-200 h-[500px] lg:h-full w-full">
               <LiveChat />
             </div>
           </div>
         </div>
 
         {/* Comments Section */}
-        <div className="mt-8 max-w-5xl">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="mt-4 sm:mt-8 max-w-5xl px-2 sm:px-0 w-full">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 w-full">
             <CommentsContainer />
           </div>
         </div>
