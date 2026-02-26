@@ -8,7 +8,7 @@ const ButtonList = () => {
   const fetchCategory = async () => {
     const response = await fetch(YOUTUBE_CATEGORY_API);
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
     setCategoryList(json.items);
   };
   useEffect(() => {

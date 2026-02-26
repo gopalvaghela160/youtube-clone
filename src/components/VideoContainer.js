@@ -7,24 +7,34 @@ const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
   const [NextPageToken, setNextPageToken] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
 
   const videoList = useCallback(async () => {
     if (loading) return;
+
     setLoading(true);
-    const response = await fetch(YOUTUBE_VIDEO_API);
+
+    const url = NextPageToken
+      ? `${YOUTUBE_VIDEO_API}&pageToken=${NextPageToken}`
+      : YOUTUBE_VIDEO_API;
+
+    const response = await fetch(url);
     const json = await response.json();
 
     setVideos((prev) => [...prev, ...json.items]);
-    setNextPageToken(json.nextPageToken || "");
+    setNextPageToken(json.nextPageToken || null);
+
     setLoading(false);
-  }, [loading]);
+  }, [loading, NextPageToken]);
 
   useEffect(() => {
     videoList();
-  }, [videoList]);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
+      if (loading || !NextPageToken) return;
+
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const fullHeight = document.documentElement.scrollHeight;
@@ -40,7 +50,7 @@ const VideoContainer = () => {
   }, [NextPageToken, loading, videoList]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-6">
       {/* Sponsored Video (Only First One) */}
       {videos.length > 0 && <AdsVideoCard info={videos[0]} />}
       {/* Rest Videos (Skip First) */}

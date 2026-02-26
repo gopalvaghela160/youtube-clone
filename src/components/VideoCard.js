@@ -14,7 +14,7 @@ const VideoCard = ({ info }) => {
   const { title, thumbnails, channelTitle } = snippet;
 
   return (
-    <div className="w-72 cursor-pointer group transition-transform duration-300 hover:scale-[1.02]">
+    <div className="w-full cursor-pointer group transition-transform duration-300 hover:scale-[1.02]">
       {/* Thumbnail */}
       <div className="relative">
         <img
@@ -46,7 +46,7 @@ const VideoCard = ({ info }) => {
 };
 export const AdsVideoCard = ({ info }) => {
   return (
-    <div className="relative w-72 rounded-xl">
+    <div className="relative w-full rounded-xl">
       {/* Ads Badge */}
       <span className=" absolute top-2 left-2 bg-yellow-500 text-white text-sm px-2 py-1 rounded-md shadow z-10">
         Sponsored
